@@ -1,17 +1,29 @@
+version: '3.8'
 
 services:
   mysql:
     image: mysql:8.0
     container_name: mysql
     environment:
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: faz-waz-real-estate
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
     ports:
-      - "33060:3306"
+      - 33061:3306
     volumes:
       - mysql-data:/var/lib/mysql
       - ./my.cnf:/etc/mysql/conf.d/my.cnf
+  phpmyadmin:
+    image: phpmyadmin
+    platform: linux/x86_64
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: password
+      UPLOAD_LIMIT: 1024M
+    ports:
+      - "8089:80"
+
   nextjs:
     container_name: faz-waz-realestate-app-container
     ports:
@@ -21,9 +33,20 @@ services:
       dockerfile: Dockerfile
     environment:
       - DATABASE_URL=mysql://root:password@mysql:3306/faz-waz-real-estate
-      - NEXT_PUBLIC_URL=http:localhost:3000
+      - NEXT_PUBLIC_URL=http://localhost:3000
     depends_on:
       - mysql
-    command: sh -c "yarn install && npx prisma generate && until npx prisma migrate dev; do echo 'Waiting for the database...'; sleep 5; done && yarn dev"
+    command: >
+      sh -c "
+      yarn install &&
+      npx prisma generate &&
+      until npx prisma migrate deploy; do
+        echo 'Waiting for the database...';
+        sleep 5;
+      done &&
+      npx prisma db seed &&
+      yarn dev
+      "
+
 volumes:
   mysql-data:
