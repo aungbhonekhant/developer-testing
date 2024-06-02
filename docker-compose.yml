@@ -34,7 +34,7 @@ services:
       - NEXT_PUBLIC_URL=http://localhost:3000
     depends_on:
       - mysql
-    command: sh -c "npx prisma migrate deploy && npx prisma db seed && yarn dev"
+    command: sh -c "npx prisma migrate deploy; do echo 'Waiting for the database...'; sleep 5; done && npx prisma db seed && yarn dev"
 
 volumes:
   mysql-data:
