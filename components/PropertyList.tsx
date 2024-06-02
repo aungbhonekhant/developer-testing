@@ -75,7 +75,7 @@ export const PropertyList = ({filter}:Props) => {
                 }
                 
             </div>
-            <div className="max-w-4xl">
+            <div className="w-full flex items-center justify-center my-6">
                 <PaginationComponent
                     pageCount={data.properties.totalPages}
                     currentPage={page}
