@@ -1,0 +1,41 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url = env("DATABASE_URL")
+}
+
+model Property {
+  id String @id @default(uuid())
+  project String
+  title String @db.Char(255)
+  desc String @db.Text
+  price Float
+  beds Int
+  baths Int
+  rate Int
+  area Int
+  thumbnail String
+  gallery Gallery[]
+  type Type
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @default(now())
+
+  @@index([project, title, type, price, beds, area])
+}
+
+model Gallery {
+  id String    @id @default(uuid())
+  url String?
+  Property Property? @relation(fields: [propertyId], references: [id])
+  propertyId String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+enum Type {
+  SELL
+  RENT
+}
