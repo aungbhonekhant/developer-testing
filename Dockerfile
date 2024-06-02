@@ -13,6 +13,8 @@ RUN yarn --network-timeout 1000000
 # Copy the rest of the application code to the working directory
 COPY . .
 
+RUN yarn build
+
 # Generate the Prisma Client
 RUN npx prisma generate
 
