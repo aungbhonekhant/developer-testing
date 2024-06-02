@@ -6,7 +6,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: faz-waz-real-estate
     ports:
-      - 33060:3306
+      - 33061:3306
     volumes:
       - mysql-data:/var/lib/mysql
       - ./my.cnf:/etc/mysql/conf.d/my.cnf
@@ -34,7 +34,7 @@ services:
       - NEXT_PUBLIC_URL=http://localhost:3000
     depends_on:
       - mysql
-    command: sh -c "npx prisma migrate deploy; do echo 'Waiting for the database...'; sleep 5; done && npx prisma db seed && yarn dev"
+    command: sh -c "until npx prisma migrate deploy; do echo 'Waiting for the database...'; sleep 5; done && npx prisma db seed && yarn dev"
 
 volumes:
   mysql-data:
