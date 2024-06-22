@@ -58,16 +58,16 @@ export const SearchForm = ({setFilter}:Props) => {
 
     return (
         <Form {...form}>
-            <form className="p-5 w-full grid sm:grid-cols-2 lg:grid-cols-7 gap-3 items-end bg-background rounded" onSubmit={form.handleSubmit(formSubmitHandler)}>
+            <form data-testid="filter-form" className="p-5 w-full grid sm:grid-cols-2 lg:grid-cols-7 gap-3 items-end bg-background rounded" onSubmit={form.handleSubmit(formSubmitHandler)}>
                 {/* search title or project */}
                 <FormField
                     control={form.control}
                     name="search"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Search</FormLabel>
+                            <FormLabel data-testid="search-input-label">Search</FormLabel>
                             <FormControl>
-                                <Input placeholder="Project name or keyword" {...field}/>
+                                <Input data-testid="search-input" placeholder="Project name or keyword" {...field}/>
                             </FormControl>
                         </FormItem>
                     )}
@@ -79,10 +79,10 @@ export const SearchForm = ({setFilter}:Props) => {
                     name="type"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Type</FormLabel>
+                            <FormLabel data-testid="type-select-label">Type</FormLabel>
                             <FormControl>
                                 <Select value={field.value} onValueChange={field.onChange}>
-                                    <SelectTrigger className="w-full">
+                                    <SelectTrigger data-testid="type-select" className="w-full">
                                         <SelectValue placeholder="Type" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -102,9 +102,9 @@ export const SearchForm = ({setFilter}:Props) => {
                     name="area_from"
                     render={({ field }) => (
                         <FormItem >
-                            <FormLabel>Min Area</FormLabel>
+                            <FormLabel data-testid="area-from-label">Min Area</FormLabel>
                             <FormControl>
-                                <Input type="number" placeholder="Min area" {...field}/>
+                                <Input data-testid="area-from" type="number" placeholder="Min area" {...field}/>
                             </FormControl>
                         </FormItem>
                     )}
@@ -114,9 +114,9 @@ export const SearchForm = ({setFilter}:Props) => {
                     name="area_to"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Max Area</FormLabel>
+                            <FormLabel data-testid="area-to-label">Max Area</FormLabel>
                             <FormControl>
-                                <Input type="number" placeholder="Max area" {...field}/>
+                                <Input data-testid="area-to" type="number" placeholder="Max area" {...field}/>
                             </FormControl>
                         </FormItem>
                     )}
@@ -128,9 +128,9 @@ export const SearchForm = ({setFilter}:Props) => {
                     name="min_price"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Min-Price</FormLabel>
+                            <FormLabel data-testid="min-price-label">Min-Price</FormLabel>
                             <FormControl>
-                                <Input type="number" placeholder="Min-Price" {...field}/>
+                                <Input data-testid="min-price" type="number" placeholder="Min-Price" {...field}/>
                             </FormControl>
                         </FormItem>
                     )}
@@ -140,9 +140,9 @@ export const SearchForm = ({setFilter}:Props) => {
                     name="max_price"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Max-Price</FormLabel>
+                            <FormLabel data-testid="max-price-label">Max-Price</FormLabel>
                             <FormControl>
-                                <Input type="number" placeholder="Max-Price" {...field}/>
+                                <Input data-testid="max-price" type="number" placeholder="Max-Price" {...field}/>
                             </FormControl>
                         </FormItem>
                     )}
@@ -154,15 +154,15 @@ export const SearchForm = ({setFilter}:Props) => {
                     name="beds"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Bed Rooms</FormLabel>
+                            <FormLabel data-testid="bed-rooms-label">Bed Rooms</FormLabel>
                             <FormControl>
-                                <Input type="number" placeholder="Bed room count" {...field}/>
+                                <Input data-testid="bed-rooms" type="number" placeholder="Bed room count" {...field}/>
                             </FormControl>
                         </FormItem>
                     )}
                 />
-                <Button className="col-start-[1] col-end-[5]">Search</Button>
-                <Button className="col-start-[5] col-end-[-1]" onClick={handleFormClear}>Clear</Button>
+                <Button data-testid="submit-btn" className="col-start-[1] col-end-[5]">Search</Button>
+                <Button data-testid="clear-btn" className="col-start-[5] col-end-[-1]" onClick={handleFormClear}>Clear</Button>
             </form>
         </Form>
     )
