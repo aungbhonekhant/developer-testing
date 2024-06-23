@@ -80,18 +80,18 @@ export const SearchForm = ({setFilter}:Props) => {
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel data-testid="type-select-label">Type</FormLabel>
-                            <FormControl>
-                                <Select value={field.value} onValueChange={field.onChange}>
-                                    <SelectTrigger data-testid="type-select" className="w-full">
+                            <Select value={field.value} onValueChange={field.onChange}>
+                                <FormControl>
+                                    <SelectTrigger data-testid="type-select" className="w-full" aria-label="type-filter">
                                         <SelectValue placeholder="Type" />
                                     </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="all">All</SelectItem>
-                                        <SelectItem value="sell">Sell</SelectItem>
-                                        <SelectItem value="rent">Rent</SelectItem>
-                                    </SelectContent>
+                                </FormControl>
+                                <SelectContent>
+                                    <SelectItem value="all">All</SelectItem>
+                                    <SelectItem value="sell">Sell</SelectItem>
+                                    <SelectItem value="rent">Rent</SelectItem>
+                                </SelectContent>
                             </Select>
-                            </FormControl>
                         </FormItem>
                     )}
                 />
