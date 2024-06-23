@@ -28,13 +28,15 @@ const PaginationComponent = ({ pageCount, currentPage, setPage }: Props) => {
         (i >= currentPage - 1 && i <= currentPage + 1)
       ) {
         paginationLinks.push(
-          <PaginationLink
-            key={i}
-            onClick={() => changePage(i)}
-            isActive={currentPage === i}
-          >
-            {i}
-          </PaginationLink>
+          <li key={i}>
+            <PaginationLink
+              href="#"
+              onClick={() => changePage(i)}
+              isActive={currentPage === i}
+            >
+              {i}
+            </PaginationLink>
+          </li>
         );
       }
     }
@@ -59,6 +61,7 @@ const PaginationComponent = ({ pageCount, currentPage, setPage }: Props) => {
   return (
     <Pagination>
       <PaginationContent className=" *:cursor-pointer">
+        <li>
         <Button
           variant="ghost"
           disabled={currentPage <= 1}
@@ -68,7 +71,9 @@ const PaginationComponent = ({ pageCount, currentPage, setPage }: Props) => {
           <ChevronLeft className="group-hover:-translate-x-1 transition-all duration-300 delay-150" />{" "}
           Previous
         </Button>
+        </li>
         {generatePaginationLinks()}
+        <li>
         <Button
           variant="ghost"
           disabled={currentPage === pageCount}
@@ -78,6 +83,7 @@ const PaginationComponent = ({ pageCount, currentPage, setPage }: Props) => {
           Next{" "}
           <ChevronRight className="group-hover:translate-x-1 transition-all duration-300 delay-150" />
         </Button>
+        </li>
       </PaginationContent>
     </Pagination>
   );
