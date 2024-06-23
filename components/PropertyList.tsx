@@ -1,14 +1,16 @@
 "use client";
 
 import { useQuery } from "@apollo/client"
-import { PropertyCard } from "./PropertyCard"
 import { GET_PROPERTIES } from "@/graphql/queries"
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { Loader, MessageCircleWarning } from "lucide-react";
 
 import { Property, Gallery} from "@prisma/client";
-import PaginationComponent from "./Pagination";
 import { useState } from "react";
+
+import dynamic from 'next/dynamic';
+const PropertyCard = dynamic(()=>import("./PropertyCard").then(mod=>mod.PropertyCard))
+const PaginationComponent = dynamic(()=>import("./Pagination"))
 
 type Props = {
     filter: Object
@@ -64,7 +66,7 @@ export const PropertyList = ({filter}:Props) => {
     
     return (
         <div id="properties-list" className="container">
-            <h3 className="text-4xl text-center mt-5 mb-2">Available Properties</h3>
+            <h2 className="text-4xl text-center mt-5 mb-2">Available Properties</h2>
             <p className="text-center text-muted-foreground"></p>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-20">
