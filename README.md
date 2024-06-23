@@ -18,11 +18,15 @@ Run the following command to migrate the database schema and seed it with demo d
 
 Wait until the migration and seeding process completes.
 
-### 4. Start the Application
+### 4. build the Application
+Build the application using the following command.
+````yarn build````
+
+### 5. Start the Application
 Start the application using the following command.
 ````yarn dev````
 
-### 5. View the Application
+### 6. View the Application
 Open your browser and navigate to http://localhost:3000/ to view the application.
 
 Here is a screenshot of how the application looks:
