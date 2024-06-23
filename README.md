@@ -24,7 +24,7 @@ Build the application using the following command.
 
 ### 5. Start the Application
 Start the application using the following command.
-````yarn dev````
+````yarn start````
 
 ### 6. View the Application
 Open your browser and navigate to http://localhost:3000/ to view the application.
