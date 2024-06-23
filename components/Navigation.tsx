@@ -24,7 +24,7 @@ export const Navigation = () => {
                 </ul>
                 <div>
                     <Avatar>
-                        <AvatarImage src=""/>
+                        <AvatarImage src="" aria-label="default avatar image" alt="default avatar image"/>
                         <AvatarFallback>AK</AvatarFallback>
                     </Avatar>
                 </div>
