@@ -3,7 +3,7 @@ import { Bath, Bed, Square, StarIcon} from "lucide-react"
 import Link from "next/link"
 import { IProperty } from "./PropertyList";
 import { Badge } from "./ui/badge";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import Image from "next/image";
 import { useState } from "react";
@@ -19,16 +19,17 @@ export const PropertyCard = ({id, project, title, desc, price, beds, baths, rate
                         <div className="border rounded-md overflow-hidden">
                             <div className="aspect-[16/10] overflow-hidden">
                                 {loading && (
-                                    <Skeleton className="h-[420px] w-[400px] rounded-xl" />
+                                    <Skeleton className="h-[300px] w-[300px] rounded-xl" />
                                 )}
                                 <Image
                                     src={thumbnail} 
                                     alt={title} 
                                     height={420} 
-                                    width={400} 
+                                    width={400}
+                                    layout="responsive"
                                     loading="lazy"
                                     onLoad={()=>setLoading(false)}
-                                    className="w-full transition-transform group-hover:scale-105"
+                                    className="w-full"
                                 />
                             </div>
                             <div className="p-6 space-y-6">
@@ -40,15 +41,15 @@ export const PropertyCard = ({id, project, title, desc, price, beds, baths, rate
                                 </div>
                                 <div className="grid grid-cols-3 items-center divide-x border-border/50">
                                     <p data-testid="area" className="py-2 flex items-center gap-2 justify-center">
-                                        <Square className="w-4 h-4"/>
+                                        <Square aria-label="area square icon" className="w-4 h-4"/>
                                         { area } sqft
                                     </p>
                                     <p data-testid="beds" className="py-2 flex items-center gap-2 justify-center">
-                                        <Bed className="w-4 h-4"/>
+                                        <Bed aria-label="bed icon" className="w-4 h-4"/>
                                         { beds } Beds
                                     </p>
                                     <p data-testid="baths" className="py-2 flex items-center gap-2 justify-center">
-                                        <Bath className="w-4 h-4"/>
+                                        <Bath aria-label="bath icon" className="w-4 h-4"/>
                                         { baths } Baths
                                     </p>
                                 </div>
@@ -62,7 +63,7 @@ export const PropertyCard = ({id, project, title, desc, price, beds, baths, rate
                                         <div className="flex gap-2 items-center">
                                             {Array(5).fill(0).map((_, index) => (
                                                 <div key={index}>
-                                                    <StarIcon fill={index < rate ? "orange" : "transparent"} color="orange" size={16}/>
+                                                    <StarIcon aria-label="Rating star icon" fill={index < rate ? "orange" : "transparent"} color="orange" size={16}/>
                                                 </div>
                                             ))
                                             
@@ -74,10 +75,7 @@ export const PropertyCard = ({id, project, title, desc, price, beds, baths, rate
                         </div>
                     </Link>
                 </DialogTrigger>
-                
-                    {/* <DialogTrigger asChild>
-                        <Button variant="outline">Share</Button>
-                    </DialogTrigger> */}
+    
                 <DialogContent className="max-w-4xl sm:max-w-md md:max-w-4xl">
                     <DialogHeader>
                         <DialogTitle>{project}</DialogTitle>
@@ -87,12 +85,10 @@ export const PropertyCard = ({id, project, title, desc, price, beds, baths, rate
                                     {
                                         (gallery && gallery.length > 0) && gallery.map(gly => (
                                             <CarouselItem key={gly.id} className="flex items-center justify-center">
-                                                <Image
+                                                <img
                                                     src={gly.url ? gly.url : ""} 
                                                     alt={`${title}-${gly.id}`}  
                                                     width={500} height={520}
-                                                    loading="lazy"
-                                                    onLoad={()=>setLoading(false)}
                                                 />
                                             </CarouselItem>
                                         ))
