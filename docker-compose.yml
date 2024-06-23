@@ -36,7 +36,7 @@ services:
       - NEXT_PUBLIC_URL=http://localhost:3000
     depends_on:
       - db-stamps
-    command: sh -c "until npx prisma migrate deploy; do echo 'Waiting for the database...'; sleep 5; done && npx prisma db seed && yarn dev"
+    command: sh -c "until npx prisma migrate deploy; do echo 'Waiting for the database...'; sleep 5; done && npx prisma db seed && yarn start"
 
 
   phpmyadmin:

@@ -13,6 +13,9 @@ RUN yarn --network-timeout 1000000
 # Copy the rest of the application code to the working directory
 COPY . .
 
+# Run tests
+RUN yarn test || true
+
 RUN yarn build
 
 # Generate the Prisma Client
@@ -22,4 +25,4 @@ RUN npx prisma generate
 EXPOSE 3000
 
 # Command to run the Next.js application
-CMD ["yarn", "dev"]
+CMD ["yarn", "start"]
